@@ -26,6 +26,7 @@ export default defineConfig({
       scss: {
         additionalData: `
           @use "@/styles/elements/index.scss" as *;
+          @use "@/styles/var.scss" as *;
         `,
       }
     }
