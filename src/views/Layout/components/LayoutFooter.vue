@@ -99,7 +99,7 @@
       font-size: 18px;
     }
 
-    dd {
+      dd {
       margin: 36px 12px 0 0;
       float: left;
       width: 92px;
