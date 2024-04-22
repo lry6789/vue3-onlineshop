@@ -10,6 +10,7 @@
       <li v-for="item in categoryStore.categoryList" :key="item.id">
         <RouterLink to="/">{{ item.name }}</RouterLink>
         <RouterLink v-for="i in item.children.slice(0,2)" :key="i.id" to="/">{{ i.name }}</RouterLink>
+        
         <!-- 弹层layer位置 -->
         <div class="layer">
           <h4>分类推荐 <small>根据您的购买或浏览记录推荐</small></h4>
@@ -47,7 +48,7 @@
       padding-left: 40px;
       height: 55px;
       line-height: 55px;
-
+ 
       &:hover {
         background: $xtxColor;
       }
@@ -68,7 +69,7 @@
         position: absolute;
         left: 250px;
         top: 0;
-        display: none;
+        display: none;  //不hold不显示
         padding: 0 15px;
 
         h4 {

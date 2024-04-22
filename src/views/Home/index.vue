@@ -17,7 +17,5 @@
 </template>
 
 <style>
-  .test-scroll{
-    height: 1400px;
-  }
-</style>./components/HomeBanner.vue
+
+</style>
