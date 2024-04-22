@@ -14,7 +14,7 @@ export const lazyPlugin = {
             // console.log(isIntersecting)
             if (isIntersecting) {
               //进入
-              console.log(isIntersecting)
+              // console.log(isIntersecting)
               el.src = binding.value
               stop()
             }

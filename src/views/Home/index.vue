@@ -15,7 +15,7 @@
   <HomeNew/>
   <HomeHot/>
   <HomeProduct/>
-
+  
 </template>
 
 <style>
