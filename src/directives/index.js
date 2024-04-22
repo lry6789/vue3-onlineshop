@@ -8,13 +8,15 @@ export const lazyPlugin = {
         //binding:binding.value:指令等于号后面绑定的表达式的值 v-img-lazy = "" 引号里面的内容
         // console.log(el)
         // console.log(binding)
-        useIntersectionObserver(
+        const { stop } = useIntersectionObserver(
           el,
           ([{ isIntersecting }]) => {
             // console.log(isIntersecting)
             if (isIntersecting) {
               //进入
+              console.log(isIntersecting)
               el.src = binding.value
+              stop()
             }
           }
         )
