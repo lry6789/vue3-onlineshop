@@ -15,12 +15,7 @@
   <HomeNew/>
   <HomeHot/>
   <HomeProduct/>
-  <HomePannel title = '新鲜好物' subTitle = '新鲜好物 好多商品'>
-    
-  </HomePannel>
-  <HomePannel title = '人气推荐' subTitle = '人气推荐 好多商品'>
-    
-  </HomePannel>
+
 </template>
 
 <style>
