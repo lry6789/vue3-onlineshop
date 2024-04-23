@@ -3,7 +3,7 @@
   import {onMounted, ref} from 'vue'
   import {useRoute} from 'vue-router'
   import GoodsItem from '@/views/Home/components/GoodsItem.vue'
-  //获取数据
+  //获取面包屑数据
   const route = useRoute()
   const categoryData = ref({})
   const getCategoryData = async()=>{
@@ -11,9 +11,15 @@
     categoryData.value = res.result
   }
   onMounted(()=>getCategoryData())
-
+  //tab切换
+  const tabChange = ()=>{
+    // console.log(reqData.value.sortField)
+    reqData.value.page = 1
+    getgGoodList()
+  }
   //列表渲染
   const goodList = ref([])
+  
   const reqData = ref({
     categoryId: route.params.id,
     page: 1,
@@ -25,6 +31,7 @@
     goodList.value = res.result.items
   }
   onMounted(()=>getgGoodList())  
+
 </script>
 
 <template>
@@ -39,10 +46,10 @@
       </el-breadcrumb>
     </div>
     <div class="sub-container">
-      <el-tabs>
-        <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
-        <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
-        <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
+      <el-tabs v-model = 'reqData.sortField'  @tab-change = 'tabChange'>
+        <el-tab-pane label="最新商品" name="publishTime" ></el-tab-pane>
+        <el-tab-pane label="最高人气" name="orderNum" ></el-tab-pane>
+        <el-tab-pane label="评论最多" name="evaluateNum" ></el-tab-pane>
       </el-tabs>
       <div class="body">
          <!-- 商品列表-->
