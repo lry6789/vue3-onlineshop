@@ -3,8 +3,8 @@
   import {getDetail} from '@/apis/detail.js'
   import {useRoute} from 'vue-router'
   import DetailHot from './components/DetailHot.vue' 
-  import Image from '@/components/Image.vue'
-  import XtxSku from '@/components/XtxSku/index.vue'
+  // import Image from '@/components/Image.vue'
+  // import XtxSku from '@/components/XtxSku/index.vue'
   const route = useRoute()
   const goods = ref({})
   const getGoods = async()=>{
