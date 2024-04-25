@@ -18,10 +18,13 @@ export const useCartStore = defineStore('cart',
       }
       // console.log(cartList.value)
     }
+    const delCart = (skuId) => {
+      cartList.value = cartList.value.filter((item) => item.skuId !== skuId)
+    }
     return {
       cartList,
       addCart,
-
+      delCart,
     }
   },
   {
