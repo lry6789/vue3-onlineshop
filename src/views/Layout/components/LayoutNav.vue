@@ -7,7 +7,7 @@
   const cartStore = useCartStore()
   const confirm = ()=>{
     userStore.clearUserInfo()
-    cartStore.clearCart()
+    
     router.replace({path:'/login'})
   }
 </script>
