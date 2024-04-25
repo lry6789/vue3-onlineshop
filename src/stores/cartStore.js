@@ -1,19 +1,18 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useUserStore } from './user'
-import { insertCartAPI, getCartListAPI } from '@/apis/cart'
+import { insertCartAPI, getCartListAPI, delCartAPI } from '@/apis/cart'
 export const useCartStore = defineStore('cart',
   () => {
     const userStore = useUserStore()
     const isLogin = computed(() => userStore.userInfo.token)
     const cartList = ref([])
     const addCart = async (goods) => {
-      if (isLogin) {
+      if (isLogin.value) {
         //登录
         const { skuId, count } = goods
         await insertCartAPI({ skuId, count })
         const res = await getCartListAPI()
-
         cartList.value = res.result
       }
       else {
@@ -31,8 +30,16 @@ export const useCartStore = defineStore('cart',
       }
 
     }
-    const delCart = (skuId) => {
-      cartList.value = cartList.value.filter((item) => item.skuId !== skuId)
+    const delCart = async (skuId) => {
+      if (isLogin.value) {
+        await delCartAPI([skuId])
+        const res = await getCartListAPI()
+        cartList.value = res.result
+      }
+      else {
+        cartList.value = cartList.value.filter((item) => item.skuId !== skuId)
+      }
+
     }
     //总数量
     const allCount = computed(() => cartList.value.reduce((a, c) => a + c.count, 0))
