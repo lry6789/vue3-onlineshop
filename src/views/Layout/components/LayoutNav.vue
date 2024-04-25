@@ -1,10 +1,13 @@
 <script setup>
-  import { useUserStore } from '@/stores/user'
+  import { useUserStore } from '@/stores/userStore'
+  import { useCartStore } from '@/stores/cartStore';
   import { useRouter } from 'vue-router';
   const router = useRouter()
   const userStore = useUserStore()
+  const cartStore = useCartStore()
   const confirm = ()=>{
     userStore.clearUserInfo()
+    cartStore.clearCart()
     router.replace({path:'/login'})
   }
 </script>
@@ -71,4 +74,4 @@
     }
   }
 }
-</style>
+</style>@/stores/userStore
