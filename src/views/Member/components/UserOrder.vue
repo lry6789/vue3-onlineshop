@@ -13,24 +13,30 @@ const tabTypes = [
 ]
 // 订单列表
 const orderList = ref([])
-const getUserOrder = async()=>{
-  const res = await getUserOrderAPI({
+
+const params = ref({
     orderState:0,
     page:1,
     pageSize:2,
   })
+const getUserOrder = async()=>{
+  const res = await getUserOrderAPI(params.value)
   orderList.value = res.result.items
   console.log(orderList.value)
 }
 onMounted(()=>{
   getUserOrder()
 })
-
+const tabChange=(type)=>{
+  // console.log(type)
+  params.value.orderState=type
+  getUserOrder()
+}
 </script>
 
 <template>
   <div class="order-container">
-    <el-tabs>
+    <el-tabs @tab-change="tabChange">
       <!-- tab切换 -->
       <el-tab-pane v-for="item in tabTypes" :key="item.name" :label="item.label" />
 
