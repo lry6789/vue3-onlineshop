@@ -17,12 +17,13 @@ const orderList = ref([])
 const params = ref({
     orderState:0,
     page:1,
-    pageSize:2,
+    pageSize:1,
   })
 const getUserOrder = async()=>{
   const res = await getUserOrderAPI(params.value)
   orderList.value = res.result.items
-  console.log(orderList.value)
+  total.value =  res.result.counts
+
 }
 onMounted(()=>{
   getUserOrder()
@@ -30,6 +31,13 @@ onMounted(()=>{
 const tabChange=(type)=>{
   // console.log(type)
   params.value.orderState=type
+  getUserOrder()
+}
+//页数
+const total = ref(0)
+
+const changePage=(number)=>{
+  params.value.page=number
   getUserOrder()
 }
 </script>
@@ -113,8 +121,8 @@ const tabChange=(type)=>{
             </div>
           </div>
           <!-- 分页 -->
-          <div class="pagination-container">
-            <el-pagination background layout="prev, pager, next" />
+          <div class="pagination-container">  
+            <el-pagination background layout="prev, pager, next" :total="total" :page-size="params.pageSize" @current-change="changePage"/>
           </div>
         </div>
       </div>
